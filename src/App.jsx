@@ -1,0 +1,31 @@
+import { NexusProvider, useNexus } from './context/NexusContext';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import NexusDashboard from './components/NexusDashboard';
+import Footer from './components/Footer';
+
+function AppContent() {
+  const { activePage } = useNexus();
+
+  return (
+    <div className="min-h-screen flex flex-col bg-bg">
+      <Navbar />
+      {activePage === 'nexus' ? (
+        <NexusDashboard />
+      ) : (
+        <>
+          <Hero />
+          <Footer />
+        </>
+      )}
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <NexusProvider>
+      <AppContent />
+    </NexusProvider>
+  );
+}
