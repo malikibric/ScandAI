@@ -9,7 +9,7 @@ function AppContent() {
   const { activePage } = useNexus();
 
   return (
-    <div className="min-h-screen flex flex-col bg-bg">
+    <div className="min-h-screen flex flex-col bg-bg text-white">
       <Navbar />
       {activePage === 'nexus' ? (
         <NexusDashboard />

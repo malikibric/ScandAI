@@ -28,8 +28,8 @@ export default function SymbiosisAgent() {
   const [contractSigned, setContractSigned] = useState(false);
 
   const statusColors = {
-    available: 'bg-success-light text-success',
-    matched: 'bg-primary-light text-primary',
+    available: 'bg-success/20 text-success',
+    matched: 'bg-primary/20 text-primary',
   };
 
   const priorityColors = {
@@ -44,19 +44,19 @@ export default function SymbiosisAgent() {
       <div className="glass-card p-4">
         <div className="flex items-center gap-2 mb-3">
           <Sparkles className="w-4 h-4 text-accent" />
-          <h3 className="font-bold text-sm text-text">AI Symbiosis Alerts</h3>
+          <h3 className="font-bold text-sm text-white">AI Symbiosis Alerts</h3>
           <span className="pulse-dot ml-1" />
         </div>
         <div className="space-y-2">
           {aiAlerts.map((alert, index) => (
             <div
               key={alert.id}
-              className={`flex items-start gap-3 p-3 rounded-xl bg-bg border-l-3 ${priorityColors[alert.priority]} animate-slide-in-right`}
+              className={`flex items-start gap-3 p-3 rounded-xl bg-white/5 border-l-3 ${priorityColors[alert.priority]} animate-slide-in-right`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <span className="text-lg mt-0.5">{alert.icon}</span>
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-semibold text-text">{alert.title}</div>
+                <div className="text-sm font-semibold text-white">{alert.title}</div>
                 <p className="text-xs text-text-muted mt-0.5 leading-relaxed">
                   {alert.message}
                 </p>
@@ -86,7 +86,7 @@ export default function SymbiosisAgent() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <Recycle className="w-5 h-5 text-success" />
-            <h3 className="font-bold text-text">My Waste Streams</h3>
+            <h3 className="font-bold text-white">My Waste Streams</h3>
           </div>
           <div className="space-y-3">
             {wasteStreams.map((stream, index) => (
@@ -98,7 +98,7 @@ export default function SymbiosisAgent() {
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <h4 className="font-semibold text-text">{stream.type}</h4>
+                      <h4 className="font-semibold text-white">{stream.type}</h4>
                       <span className={`tag text-[11px] ${statusColors[stream.status]}`}>
                         {stream.status === 'matched' ? '✓ Matched' : 'Available'}
                       </span>
@@ -132,7 +132,7 @@ export default function SymbiosisAgent() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <TrendingUp className="w-5 h-5 text-primary" />
-            <h3 className="font-bold text-text">Market Opportunities</h3>
+            <h3 className="font-bold text-white">Market Opportunities</h3>
           </div>
           <div className="space-y-3">
             {marketOpportunities.map((opp, index) => (
@@ -143,10 +143,10 @@ export default function SymbiosisAgent() {
               >
                 <div className="flex items-start justify-between mb-2">
                   <div>
-                    <h4 className="font-semibold text-text">{opp.company}</h4>
+                    <h4 className="font-semibold text-white">{opp.company}</h4>
                     <p className="text-xs text-primary font-medium">{opp.need}</p>
                   </div>
-                  <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-primary-light">
+                  <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-primary/20">
                     <Zap className="w-3 h-3 text-primary" />
                     <span className="text-xs font-bold text-primary">
                       {opp.matchConfidence}%
@@ -176,19 +176,19 @@ export default function SymbiosisAgent() {
 
       {/* Trade / Contract Modal */}
       {tradeModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
           <div
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-fade-in-up"
+            className="bg-bg-card border border-border rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-fade-in-up"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
             <div className="flex items-center justify-between p-6 border-b border-border">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-success-light flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-success/20 flex items-center justify-center">
                   <FileText className="w-5 h-5 text-success" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-text">{contractPreview.title}</h3>
+                  <h3 className="font-bold text-white">{contractPreview.title}</h3>
                   <p className="text-xs text-text-muted">
                     {contractPreview.subtitle}
                   </p>
@@ -199,7 +199,7 @@ export default function SymbiosisAgent() {
                   closeTradeModal();
                   setContractSigned(false);
                 }}
-                className="p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
+                className="p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
               >
                 <X className="w-5 h-5 text-text-muted" />
               </button>
@@ -209,35 +209,35 @@ export default function SymbiosisAgent() {
             <div className="p-6 space-y-5">
               {/* Parties */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-3 rounded-xl bg-bg">
+                <div className="p-3 rounded-xl bg-white/5">
                   <div className="text-[11px] text-text-muted font-medium uppercase tracking-wider mb-1">
                     Resource Provider
                   </div>
-                  <div className="text-sm font-semibold text-text">
+                  <div className="text-sm font-semibold text-white">
                     {contractPreview.parties.provider}
                   </div>
                 </div>
-                <div className="p-3 rounded-xl bg-bg">
+                <div className="p-3 rounded-xl bg-white/5">
                   <div className="text-[11px] text-text-muted font-medium uppercase tracking-wider mb-1">
                     Resource Receiver
                   </div>
-                  <div className="text-sm font-semibold text-text">
+                  <div className="text-sm font-semibold text-white">
                     {contractPreview.parties.receiver}
                   </div>
                 </div>
               </div>
 
               {/* Resource */}
-              <div className="p-3 rounded-xl bg-primary-light/50 flex items-center gap-2">
+              <div className="p-3 rounded-xl bg-primary/10 flex items-center gap-2">
                 <ArrowRight className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
+                <span className="text-sm font-medium text-primary-light">
                   {contractPreview.resource}
                 </span>
               </div>
 
               {/* Terms */}
               <div>
-                <h4 className="text-sm font-semibold text-text mb-3">
+                <h4 className="text-sm font-semibold text-white mb-3">
                   Agreement Terms
                 </h4>
                 <ul className="space-y-2">
@@ -252,7 +252,7 @@ export default function SymbiosisAgent() {
 
               {/* Value & Impact */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-success-light text-center">
+                <div className="p-4 rounded-xl bg-success/10 text-center">
                   <div className="text-xs text-success font-medium mb-1">
                     Estimated Value
                   </div>
@@ -260,18 +260,18 @@ export default function SymbiosisAgent() {
                     {contractPreview.estimatedValue}
                   </div>
                 </div>
-                <div className="p-4 rounded-xl bg-primary-light text-center">
+                <div className="p-4 rounded-xl bg-primary/10 text-center">
                   <div className="text-xs text-primary font-medium mb-1">
                     Carbon Impact
                   </div>
-                  <div className="text-lg font-bold text-primary">
+                  <div className="text-lg font-bold text-primary-light">
                     {contractPreview.carbonImpact}
                   </div>
                 </div>
               </div>
 
               {/* Disclaimer */}
-              <div className="flex items-start gap-2 p-3 rounded-xl bg-warning-light text-xs text-warning">
+              <div className="flex items-start gap-2 p-3 rounded-xl bg-warning/10 text-xs text-warning">
                 <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
                 <span>
                   This is a preliminary framework agreement. Final terms
@@ -297,7 +297,7 @@ export default function SymbiosisAgent() {
                   className={`flex-1 justify-center font-semibold py-2.5 px-6 rounded-xl text-sm transition-all cursor-pointer inline-flex items-center gap-2 ${
                     contractSigned
                       ? 'bg-success text-white'
-                      : 'bg-accent text-white hover:bg-[#CF2F3C] shadow-lg shadow-accent/20'
+                      : 'bg-accent text-white hover:bg-purple-600 shadow-lg shadow-accent/20'
                   }`}
                 >
                   {contractSigned ? (
