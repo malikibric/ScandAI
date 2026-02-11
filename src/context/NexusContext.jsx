@@ -40,7 +40,7 @@ export function NexusProvider({ children }) {
       timestamp: 'Just now',
       proposals: 0,
       isAnonymous: problem.isAnonymous,
-      company: problem.isAnonymous ? null : 'Volvo Group',
+      company: problem.isAnonymous ? null : 'Volvo Personvagnar',
     };
     setProblems(prev => [newProblem, ...prev]);
   }, []);

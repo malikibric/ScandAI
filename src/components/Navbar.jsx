@@ -86,7 +86,7 @@ export default function Navbar() {
                 </div>
                 <div className="text-left hidden lg:block">
                   <div className="text-sm font-semibold text-text leading-tight">Erik Lindström</div>
-                  <div className="text-[11px] text-text-muted leading-tight">Volvo Group</div>
+                  <div className="text-[11px] text-text-muted leading-tight">Volvo Personvagnar</div>
                 </div>
                 <ChevronDown className="w-4 h-4 text-text-muted" />
               </button>
@@ -96,7 +96,7 @@ export default function Navbar() {
                   <div className="px-4 py-2 border-b border-border">
                     <div className="text-sm font-semibold">Erik Lindström</div>
                     <div className="text-xs text-text-muted">Head of Innovation</div>
-                    <div className="text-xs text-primary">Volvo Group</div>
+                    <div className="text-xs text-primary">Volvo Personvagnar</div>
                   </div>
                   <button className="w-full text-left px-4 py-2 text-sm text-text-muted hover:bg-gray-50 flex items-center gap-2 cursor-pointer">
                     <User className="w-4 h-4" /> Profile Settings
@@ -146,7 +146,7 @@ export default function Navbar() {
             </div>
             <div>
               <div className="text-sm font-semibold">Erik Lindström</div>
-              <div className="text-xs text-text-muted">Volvo Group</div>
+              <div className="text-xs text-text-muted">Volvo Personvagnar</div>
             </div>
           </div>
         </div>
