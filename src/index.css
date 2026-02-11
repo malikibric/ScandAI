@@ -1,22 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0052CC;
-  --color-primary-dark: #003D99;
-  --color-primary-light: #E6F0FF;
-  --color-accent: #E63946;
-  --color-accent-light: #FFF0F1;
-  --color-bg: #F5F5F5;
+  --color-primary: #8B5CF6;
+  --color-primary-dark: #7C3AED;
+  --color-primary-light: #EDE9FE;
+  --color-accent: #A855F7;
+  --color-accent-light: #F3E8FF;
+  --color-bg: #0D0015;
   --color-bg-white: #FFFFFF;
-  --color-text: #1A1A1A;
-  --color-text-muted: #6B7280;
+  --color-bg-card: #1A0A2E;
+  --color-bg-navbar: #7C3AED;
+  --color-text: #FFFFFF;
+  --color-text-muted: #C4B5D8;
   --color-text-light: #9CA3AF;
-  --color-border: #E5E7EB;
-  --color-border-dark: #D1D5DB;
+  --color-text-dark: #1A1A1A;
+  --color-border: #2D1B4E;
+  --color-border-dark: #3D2B5E;
   --color-success: #059669;
   --color-success-light: #ECFDF5;
   --color-warning: #D97706;
   --color-warning-light: #FFFBEB;
+  --color-purple-light: #C084FC;
+  --color-purple-mid: #A855F7;
+  --color-purple-deep: #7C3AED;
+  --color-purple-dark: #581C87;
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -42,16 +49,16 @@
 
 @layer components {
   .glass-card {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(26, 10, 46, 0.85);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(229, 231, 235, 0.6);
+    border: 1px solid rgba(124, 58, 237, 0.2);
     border-radius: 16px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 24px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 6px 24px rgba(0, 0, 0, 0.15);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .glass-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 40px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2), 0 12px 40px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
   }
 
@@ -73,7 +80,7 @@
   .btn-primary:hover {
     background-color: var(--color-primary-dark);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
   }
 
   .btn-primary:disabled {
@@ -99,7 +106,7 @@
   }
 
   .btn-secondary:hover {
-    background-color: var(--color-primary-light);
+    background-color: rgba(139, 92, 246, 0.1);
     transform: translateY(-1px);
   }
 
@@ -119,9 +126,9 @@
   }
 
   .btn-accent:hover {
-    background-color: #CF2F3C;
+    background-color: #9333EA;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
   }
 
   .tag {
@@ -143,14 +150,14 @@
     font-size: 14px;
     font-family: var(--font-sans);
     color: var(--color-text);
-    background: white;
+    background: rgba(26, 10, 46, 0.6);
     transition: all 0.2s ease;
     outline: none;
   }
 
   .input-field:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
   }
 
   .input-field::placeholder {
@@ -186,6 +193,31 @@
     to { opacity: 1; transform: translateX(0); }
   }
 
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(10px, -15px); }
+    50% { transform: translate(-5px, -25px); }
+    75% { transform: translate(15px, -10px); }
+  }
+
+  @keyframes floatSlow {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-20px, -30px) scale(1.05); }
+    66% { transform: translate(15px, -15px) scale(0.95); }
+  }
+
+  @keyframes floatReverse {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-15px, 10px); }
+    50% { transform: translate(10px, 20px); }
+    75% { transform: translate(-10px, -5px); }
+  }
+
+  @keyframes pulseBubble {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+
   .animate-fade-in-up {
     animation: fadeInUp 0.5s ease-out forwards;
   }
@@ -196,5 +228,21 @@
 
   .animate-slide-in-right {
     animation: slideInRight 0.4s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: floatSlow 12s ease-in-out infinite;
+  }
+
+  .animate-float-reverse {
+    animation: floatReverse 10s ease-in-out infinite;
+  }
+
+  .animate-pulse-bubble {
+    animation: pulseBubble 4s ease-in-out infinite;
   }
 }

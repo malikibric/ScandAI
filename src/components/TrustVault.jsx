@@ -63,11 +63,11 @@ export default function TrustVault() {
       <div className="lg:col-span-2">
         <div className="glass-card p-6">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
               <Shield className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-bold text-text">Post a Burning Problem</h3>
+              <h3 className="font-bold text-white">Post a Burning Problem</h3>
               <p className="text-xs text-text-muted">Encrypted & secure submission</p>
             </div>
           </div>
@@ -75,7 +75,7 @@ export default function TrustVault() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Description */}
             <div>
-              <label className="block text-sm font-medium text-text mb-1.5">
+              <label className="block text-sm font-medium text-white mb-1.5">
                 Technical Challenge
               </label>
               <textarea
@@ -89,7 +89,7 @@ export default function TrustVault() {
 
             {/* Tag Selection */}
             <div className="relative">
-              <label className="block text-sm font-medium text-text mb-1.5">
+              <label className="block text-sm font-medium text-white mb-1.5">
                 Category Tag
               </label>
               <button
@@ -97,14 +97,14 @@ export default function TrustVault() {
                 onClick={() => setShowTagPicker(!showTagPicker)}
                 className="input-field text-left flex items-center justify-between cursor-pointer"
               >
-                <span className={selectedTag ? 'text-text' : 'text-text-light'}>
+                <span className={selectedTag ? 'text-white' : 'text-text-light'}>
                   {selectedTag || 'Select a category...'}
                 </span>
                 <Tag className="w-4 h-4 text-text-muted" />
               </button>
 
               {showTagPicker && (
-                <div className="absolute z-10 w-full mt-1 bg-white border border-border rounded-xl shadow-lg p-2 animate-fade-in max-h-48 overflow-y-auto">
+                <div className="absolute z-10 w-full mt-1 bg-bg-card border border-border rounded-xl shadow-lg p-2 animate-fade-in max-h-48 overflow-y-auto">
                   {TAG_OPTIONS.map((tag) => (
                     <button
                       key={tag}
@@ -115,8 +115,8 @@ export default function TrustVault() {
                       }}
                       className={`w-full text-left px-3 py-2 rounded-lg text-sm cursor-pointer transition-colors ${
                         selectedTag === tag
-                          ? 'bg-primary-light text-primary font-medium'
-                          : 'hover:bg-gray-50 text-text-muted'
+                          ? 'bg-primary/20 text-primary font-medium'
+                          : 'hover:bg-white/5 text-text-muted'
                       }`}
                     >
                       {tag}
@@ -127,7 +127,7 @@ export default function TrustVault() {
             </div>
 
             {/* Anonymous Toggle */}
-            <div className="flex items-center justify-between p-3 rounded-xl bg-bg">
+            <div className="flex items-center justify-between p-3 rounded-xl bg-white/5">
               <div className="flex items-center gap-2.5">
                 {isAnonymous ? (
                   <EyeOff className="w-4 h-4 text-primary" />
@@ -135,7 +135,7 @@ export default function TrustVault() {
                   <Eye className="w-4 h-4 text-text-muted" />
                 )}
                 <div>
-                  <div className="text-sm font-medium text-text">Anonymous Mode</div>
+                  <div className="text-sm font-medium text-white">Anonymous Mode</div>
                   <div className="text-[11px] text-text-muted">
                     {isAnonymous
                       ? 'Your identity is hidden from all participants'
@@ -147,7 +147,7 @@ export default function TrustVault() {
                 type="button"
                 onClick={() => setIsAnonymous(!isAnonymous)}
                 className={`relative w-11 h-6 rounded-full transition-colors duration-200 cursor-pointer ${
-                  isAnonymous ? 'bg-primary' : 'bg-gray-300'
+                  isAnonymous ? 'bg-primary' : 'bg-gray-600'
                 }`}
               >
                 <span
@@ -159,7 +159,7 @@ export default function TrustVault() {
             </div>
 
             {/* Security Notice */}
-            <div className="flex items-start gap-2 p-3 rounded-xl bg-primary-light/50 text-xs text-primary">
+            <div className="flex items-start gap-2 p-3 rounded-xl bg-primary/10 text-xs text-primary-light">
               <Lock className="w-4 h-4 mt-0.5 shrink-0" />
               <span>
                 All submissions are end-to-end encrypted. Identity is only
@@ -192,10 +192,10 @@ export default function TrustVault() {
       {/* Problems Feed */}
       <div className="lg:col-span-3">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-bold text-text flex items-center gap-2">
+          <h3 className="font-bold text-white flex items-center gap-2">
             <Lightbulb className="w-4 h-4 text-warning" />
             Active Challenges
-            <span className="tag bg-warning-light text-warning">{allProblems.length}</span>
+            <span className="tag bg-warning/20 text-warning">{allProblems.length}</span>
           </h3>
         </div>
 
@@ -216,11 +216,11 @@ export default function TrustVault() {
                         {problem.anonymousLabel}
                       </span>
                     ) : (
-                      <span className="text-sm font-semibold text-text">
+                      <span className="text-sm font-semibold text-white">
                         {problem.company}
                       </span>
                     )}
-                    <span className="tag bg-primary-light text-primary">
+                    <span className="tag bg-primary/20 text-primary-light">
                       {problem.tag}
                     </span>
                   </div>
@@ -259,17 +259,17 @@ export default function TrustVault() {
 
       {/* Proposal Modal */}
       {proposalModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
           <div
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6 animate-fade-in-up"
+            className="bg-bg-card border border-border rounded-2xl shadow-2xl w-full max-w-lg p-6 animate-fade-in-up"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
                 <Handshake className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-bold text-text">Double-Blind Handshake</h3>
+                <h3 className="font-bold text-white">Double-Blind Handshake</h3>
                 <p className="text-xs text-text-muted">
                   Your identity remains protected until both parties agree to connect
                 </p>
@@ -278,7 +278,7 @@ export default function TrustVault() {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-text mb-1.5">
+                <label className="block text-sm font-medium text-white mb-1.5">
                   Your Proposed Solution
                 </label>
                 <textarea
@@ -289,7 +289,7 @@ export default function TrustVault() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text mb-1.5">
+                <label className="block text-sm font-medium text-white mb-1.5">
                   Relevant Capabilities
                 </label>
                 <input
@@ -299,7 +299,7 @@ export default function TrustVault() {
                 />
               </div>
 
-              <div className="flex items-start gap-2 p-3 rounded-xl bg-success-light text-xs text-success">
+              <div className="flex items-start gap-2 p-3 rounded-xl bg-success/10 text-xs text-success">
                 <ShieldCheck className="w-4 h-4 mt-0.5 shrink-0" />
                 <span>
                   Both parties will review anonymized proposals. Identities

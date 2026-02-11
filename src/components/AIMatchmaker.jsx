@@ -38,7 +38,7 @@ export default function AIMatchmaker() {
     const status = connections[companyId];
     if (status === 'connected') {
       return (
-        <button className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-success-light text-success text-sm font-semibold cursor-default">
+        <button className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-success/20 text-success text-sm font-semibold cursor-default">
           <Check className="w-4 h-4" />
           Connected
         </button>
@@ -46,7 +46,7 @@ export default function AIMatchmaker() {
     }
     if (status === 'pending') {
       return (
-        <button className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-warning-light text-warning text-sm font-semibold cursor-default">
+        <button className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-warning/20 text-warning text-sm font-semibold cursor-default">
           <Loader2 className="w-4 h-4 animate-spin" />
           Pending...
         </button>
@@ -67,9 +67,9 @@ export default function AIMatchmaker() {
   };
 
   const getScoreColor = (score) => {
-    if (score >= 90) return 'text-success bg-success-light';
-    if (score >= 80) return 'text-primary bg-primary-light';
-    return 'text-warning bg-warning-light';
+    if (score >= 90) return 'text-success bg-success/20';
+    if (score >= 80) return 'text-primary bg-primary/20';
+    return 'text-warning bg-warning/20';
   };
 
   return (
@@ -77,11 +77,11 @@ export default function AIMatchmaker() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-accent-light flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
             <Sparkles className="w-5 h-5 text-accent" />
           </div>
           <div>
-            <h3 className="font-bold text-text">AI-Recommended Partners</h3>
+            <h3 className="font-bold text-white">AI-Recommended Partners</h3>
             <p className="text-xs text-text-muted">
               Based on your R&D focus in Electrification & Autonomous Driving
             </p>
@@ -102,7 +102,7 @@ export default function AIMatchmaker() {
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                 filter === f.id
                   ? 'bg-primary text-white'
-                  : 'bg-white border border-border text-text-muted hover:bg-gray-50'
+                  : 'bg-white/5 border border-border text-text-muted hover:bg-white/10'
               }`}
             >
               {f.label}
@@ -127,9 +127,9 @@ export default function AIMatchmaker() {
             }
           >
             {/* Match Score Bar */}
-            <div className="h-1 bg-gray-100">
+            <div className="h-1 bg-white/5">
               <div
-                className="h-full bg-gradient-to-r from-primary to-primary-dark transition-all duration-700"
+                className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-700"
                 style={{ width: `${company.matchScore}%` }}
               />
             </div>
@@ -138,11 +138,11 @@ export default function AIMatchmaker() {
               {/* Top Row */}
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-bg flex items-center justify-center text-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-2xl">
                     {company.logo}
                   </div>
                   <div>
-                    <h4 className="font-bold text-text text-[15px]">
+                    <h4 className="font-bold text-white text-[15px]">
                       {company.name}
                     </h4>
                     <div className="flex items-center gap-1.5 text-xs text-text-muted">
@@ -169,7 +169,7 @@ export default function AIMatchmaker() {
                 {company.rdFocus.map((focus) => (
                   <span
                     key={focus}
-                    className="tag bg-bg text-text-muted text-[11px]"
+                    className="tag bg-white/5 text-text-muted text-[11px]"
                   >
                     {focus}
                   </span>
@@ -208,7 +208,7 @@ export default function AIMatchmaker() {
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {['Joint R&D', 'Pilot Project', 'Knowledge Exchange', 'Supply Chain'].map((area) => (
-                        <span key={area} className="tag bg-primary-light text-primary text-[11px]">
+                        <span key={area} className="tag bg-primary/20 text-primary-light text-[11px]">
                           {area}
                         </span>
                       ))}
@@ -233,7 +233,7 @@ export default function AIMatchmaker() {
       {/* Empty State */}
       {sortedCompanies.length === 0 && (
         <div className="glass-card p-12 text-center">
-          <Sparkles className="w-8 h-8 text-text-light mx-auto mb-3" />
+          <Sparkles className="w-8 h-8 text-text-muted mx-auto mb-3" />
           <p className="text-sm text-text-muted">
             No partners match the current filter. Try adjusting your criteria.
           </p>
