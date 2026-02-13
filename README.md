@@ -1,16 +1,54 @@
-# React + Vite
+# ScandAI – Tech Forward NEXUS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> An AI-powered collaboration platform for Sweden's industrial ecosystem, built for **Teknikföretagen** (Technology Industries of Sweden).
 
-Currently, two official plugins are available:
+## 🚀 What is ScandAI?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ScandAI connects 4,500+ Swedish industrial companies through three AI-driven modules that enable anonymous problem-solving, resource sharing, and strategic partnerships — all within a trust-first framework.
 
-## React Compiler
+## 🧩 Core Modules
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🔒 Trust Vault
+Anonymous problem-solving where companies post challenges without revealing their identity. AI matches problems to potential solvers. A **Double-Blind Handshake** protocol reveals identities only when both parties opt in.
 
-## Expanding the ESLint configuration
+### ♻️ Symbiosis Agent
+Industrial resource matching that turns one company's waste into another's raw material. AI scans waste streams and production surplus to find circular economy opportunities, with built-in smart contract generation.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🤝 AI Matchmaker
+Strategic partner discovery powered by AI. Companies are scored and matched based on complementary capabilities, R&D focus, and market alignment across the Teknikföretagen member network.
+
+## 🗃️ Real Data
+
+The platform is backed by a real database of **4,500+ Teknikföretagen member companies**, including Volvo, Scania, Ericsson, SAAB, ABB, Hitachi Energy, and more. The Network page allows full search and filtering by sector, city, and company size.
+
+## 🔐 Authentication
+
+Mock authentication gates the ScandAI dashboard while keeping the landing page public.
+
+- **Email:** `user@scand.ai`
+- **Password:** `password123`
+
+## 🛠️ Tech Stack
+
+- **React** (Vite)
+- **Tailwind CSS v4** (dark purple theme)
+- **Lucide React** (icons)
+- **Context API** for state management
+
+## ⚡ Getting Started
+
+```bash
+cd nexus
+npm install
+npx vite
+```
+
+Open [http://localhost:5173](http://localhost:5173)
+
+## 👥 Team
+
+Built during the **Tech Forward Hackathon** by Teknikföretagen.
+
+---
+
+*An initiative by Technology Industries of Sweden*
