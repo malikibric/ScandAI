@@ -6,11 +6,13 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { useNexus } from '../context/NexusContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const { activePage, setActivePage } = useNexus();
+  const { logout, user, isLoggedIn } = useAuth();
 
   const navLinks = [
     { id: 'events', label: 'Events' },
@@ -88,40 +90,59 @@ export default function Navbar() {
             {/* Divider */}
             <div className="w-px h-8 bg-white/30" />
 
-            {/* Log In / Profile */}
-            <div className="relative">
-              <button
-                onClick={() => setProfileOpen(!profileOpen)}
-                className="text-[13px] font-semibold uppercase tracking-[0.15em] text-white/90 hover:text-white transition-colors cursor-pointer bg-transparent border-none flex items-center gap-1.5"
-              >
-                Log In
-                <ChevronDown className="w-3.5 h-3.5" />
-              </button>
-
-              {profileOpen && (
-                <div className="absolute right-0 mt-3 w-56 bg-bg-card rounded-xl shadow-2xl border border-border py-2 animate-fade-in">
-                  <div className="px-4 py-2.5 border-b border-border">
-                    <div className="text-sm font-semibold text-white">Erik Lindström</div>
-                    <div className="text-xs text-text-muted">Head of Innovation</div>
-                    <div className="text-xs text-primary-light">Volvo Personvagnar</div>
+            {/* Auth Section */}
+            {isLoggedIn && user ? (
+              /* Logged-in: show profile dropdown */
+              <div className="relative">
+                <button
+                  onClick={() => setProfileOpen(!profileOpen)}
+                  className="flex items-center gap-2 cursor-pointer bg-transparent border-none"
+                >
+                  <div className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center text-xs font-bold">
+                    {user.initials}
                   </div>
-                  <button className="w-full text-left px-4 py-2 text-sm text-text-muted hover:bg-white/5 flex items-center gap-2 cursor-pointer">
-                    <User className="w-4 h-4" /> Profile Settings
-                  </button>
-                  <button className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-400/10 cursor-pointer">
-                    Sign Out
-                  </button>
-                </div>
-              )}
-            </div>
+                  <span className="text-[13px] font-semibold text-white/90 hover:text-white transition-colors">
+                    {user.name}
+                  </span>
+                  <ChevronDown className="w-3.5 h-3.5 text-white/70" />
+                </button>
 
-            {/* Join Button */}
-            <button
-              onClick={() => setActivePage('nexus')}
-              className="text-[13px] font-semibold uppercase tracking-[0.15em] text-white px-6 py-2.5 rounded-md bg-[#1a0a2e] border border-white/20 hover:bg-[#2d1b4e] transition-colors cursor-pointer"
-            >
-              Join
-            </button>
+                {profileOpen && (
+                  <div className="absolute right-0 mt-3 w-56 bg-bg-card rounded-xl shadow-2xl border border-border py-2 animate-fade-in">
+                    <div className="px-4 py-2.5 border-b border-border">
+                      <div className="text-sm font-semibold text-white">{user.name}</div>
+                      <div className="text-xs text-text-muted">{user.role}</div>
+                      <div className="text-xs text-primary-light">{user.company}</div>
+                    </div>
+                    <button className="w-full text-left px-4 py-2 text-sm text-text-muted hover:bg-white/5 flex items-center gap-2 cursor-pointer">
+                      <User className="w-4 h-4" /> Profile Settings
+                    </button>
+                    <button
+                      onClick={() => { setProfileOpen(false); logout(); }}
+                      className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-400/10 cursor-pointer"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* Not logged in: show Log In + Join buttons */
+              <>
+                <button
+                  onClick={() => setActivePage('nexus')}
+                  className="text-[13px] font-semibold uppercase tracking-[0.15em] text-white/90 hover:text-white transition-colors cursor-pointer bg-transparent border-none"
+                >
+                  Log In
+                </button>
+                <button
+                  onClick={() => setActivePage('nexus')}
+                  className="text-[13px] font-semibold uppercase tracking-[0.15em] text-white px-6 py-2.5 rounded-md bg-[#1a0a2e] border border-white/20 hover:bg-[#2d1b4e] transition-colors cursor-pointer"
+                >
+                  Join
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -173,24 +194,40 @@ export default function Navbar() {
           </div>
 
           <div className="px-6 py-4 border-t border-white/15 space-y-3">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-white/20 text-white flex items-center justify-center text-sm font-bold">
-                EL
-              </div>
-              <div>
-                <div className="text-sm font-semibold text-white">Erik Lindström</div>
-                <div className="text-xs text-white/70">Volvo Personvagnar</div>
-              </div>
-            </div>
-            <button
-              onClick={() => {
-                setActivePage('nexus');
-                setMobileOpen(false);
-              }}
-              className="w-full text-[13px] font-semibold uppercase tracking-[0.15em] text-white px-6 py-2.5 rounded-md bg-[#1a0a2e] border border-white/20 hover:bg-[#2d1b4e] transition-colors cursor-pointer"
-            >
-              Join
-            </button>
+            {isLoggedIn && user ? (
+              <>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-white/20 text-white flex items-center justify-center text-sm font-bold">
+                    {user.initials}
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-white">{user.name}</div>
+                    <div className="text-xs text-white/70">{user.company}</div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => { setMobileOpen(false); logout(); }}
+                  className="w-full text-[13px] font-semibold uppercase tracking-[0.15em] text-red-400 px-6 py-2.5 rounded-md bg-red-400/10 border border-red-400/30 hover:bg-red-400/20 transition-colors cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => { setActivePage('nexus'); setMobileOpen(false); }}
+                  className="w-full text-[13px] font-semibold uppercase tracking-[0.15em] text-white/90 px-6 py-2.5 rounded-md border border-white/20 hover:bg-white/10 transition-colors cursor-pointer"
+                >
+                  Log In
+                </button>
+                <button
+                  onClick={() => { setActivePage('nexus'); setMobileOpen(false); }}
+                  className="w-full text-[13px] font-semibold uppercase tracking-[0.15em] text-white px-6 py-2.5 rounded-md bg-[#1a0a2e] border border-white/20 hover:bg-[#2d1b4e] transition-colors cursor-pointer"
+                >
+                  Join
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
